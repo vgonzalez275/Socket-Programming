@@ -1,6 +1,5 @@
 #Veronica Gonzalez
 #TCP SERVER
-#from socket import *
 
 import socket
 
