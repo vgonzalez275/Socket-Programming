@@ -1,7 +1,7 @@
 #Veronica Gonzalez
-#CPE138 LAB2
 #TCP SERVER
 #from socket import *
+
 import socket
 
 serverPort = 80
