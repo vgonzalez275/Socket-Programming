@@ -1,6 +1,6 @@
 
 # Veronica Gonzalez
-#Server
+#UDP Pinger Server
 
 import random
 from socket import *
