@@ -1,6 +1,6 @@
 #Veronica Gonzalez
-#CPE138 LAB2
 #TCP CLIENT
+
 #from socket import *
 import socket
 #serverName ='raspberrypi'#'127.0.0.1' # 'sp1.ecs.csus.edu'
