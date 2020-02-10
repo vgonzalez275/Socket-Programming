@@ -1,6 +1,6 @@
 #Veronica Gonzalez
-#CPE138 LAB2
 #UDP CLIENT
+
 from socket import *
 serverName = 'sp1.ecs.csus.edu'
 serverPort = 1212
