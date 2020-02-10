@@ -1,13 +1,12 @@
-#CPE138
-#Lab2 Web Server
 #Veronica Gonzalez
-#import socket module
+#Web Server
+
 from socket import *
 import sys # In order to terminate the program
 
 serverSocket = socket(AF_INET, SOCK_STREAM)
-#Prepare a sever socket
 
+#Prepare a sever socket
 serverSocket.bind(('',12015))
 serverSocket.listen(1)
 
