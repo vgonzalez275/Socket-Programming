@@ -1,11 +1,13 @@
 #Veronica Gonzalez
-#CPE138 LAB2
 #UDP PINGER CLIENT
+
 from socket import *
 serverName = 'sp1.ecs.csus.edu'
+
 #Port number
 serverPort = 12048
 import time
+
 #create UDP socket
 clientSocket = socket(AF_INET, SOCK_DGRAM)
 timeout = clientSocket.settimeout(1)
