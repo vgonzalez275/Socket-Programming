@@ -1,6 +1,6 @@
 #Veronica Gonzalez
-#CPE 138
 #ICMP Pinger
+
 from socket import * 
 import os 
 import sys 
@@ -44,7 +44,7 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
 		timeReceived = time.time()    
 		recPacket, addr = mySocket.recvfrom(1024)                  
 		
-#******************Fill in start************************************************       
+#**      
 		#Fetch the ICMP header from the IP packet 
 		icmp = recPacket[20:28]
 		req_type, code, checksum, pid, seq = struct.unpack("bbHHh", icmp)
@@ -55,22 +55,25 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
 			return rtt
 		else: print 'error'
 
-#*******************Fill in end*************************************************  
+#** 
 		timeLeft = timeLeft - howLongInSelect   
 		if timeLeft <= 0:    
-			return "Request timed out."   
+			return "Request timed out."  
+		
 def sendOnePing(mySocket, destAddr, ID):  
 	# Header is type (8), code (8), checksum (16), id (16), sequence (16)
 	myChecksum = 0  
-	# Make a dummy header with a 0 checksum  
+	  
 	# struct -- Interpret strings as packed binary data  
 	header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum, ID, 1)
 	data = struct.pack("d", time.time())  
-	# Calculate the checksum on the data and the dummy header.  
+	
+	# Calculate the checksum on the data and the header.  
 	myChecksum = checksum(str(header + data))    
 
 	# Get the right checksum, and put in the header  
 	if sys.platform == 'darwin':   
+		
 		# Convert 16-bit integers from host to network  byte order   
 		myChecksum = htons(myChecksum) & 0xffff 
 	else:   
@@ -80,11 +83,9 @@ def sendOnePing(mySocket, destAddr, ID):
 	packet = header + data    
 
 	mySocket.sendto(packet, (destAddr, 1)) # AF_INET address must be tuple, not str  
-	# Both LISTS and TUPLES consist of a number of objects  
-	# which can be referenced by their position number within the object. 
+	
 def doOnePing(destAddr, timeout):   
 	icmp = getprotobyname("icmp")  
-	# SOCK_RAW is a powerful socket type. For more details: http://sockraw.org/papers/sock_raw 
  
 	mySocket = socket(AF_INET, SOCK_RAW, icmp)    
 
@@ -101,11 +102,12 @@ def ping(host, timeout=1):
 	dest = gethostbyname(host)  
 	print("Pinging " + dest + " using Python:")  
 	print("")  
+	
 	# Send ping requests to a server separated by approximately one second  
 	while 1 :   
 		delay = doOnePing(dest, timeout)   
 		print(delay)   
-		time.sleep(1)# one second  
+		time.sleep(1)
 	return delay   
 
 ping("ebay.com")
