@@ -1,5 +1,4 @@
 #Veronica Gonzalez
-#CPE 138 PLab2 
 #SMTP mail client
 
 from socket import * 
@@ -7,9 +6,9 @@ from socket import *
 msg = "\r\n I love computer networks!" 
 endmsg = "\r\n.\r\n" 
 
-# Choose a mail server (e.g. Google mail server) and call it mailserver  
+# Choose a mail server  
 mailserver = 'smtp.gmail.com'#'mail.smtp2go.com'
-port = 587#2525 #port 465 for SSL or 587 for TLS
+port = 587 #port 465 for SSL or 587 for TLS
 
 # Create socket called clientSocket and establish a TCP connection with mailserver
 clientSocket = socket(AF_INET, SOCK_STREAM)
@@ -26,12 +25,6 @@ recv1 = clientSocket.recv(1024).decode()
 print(recv1) 
 if recv1[:3] != '250':     
 	print('HELO 250 reply not received from server.') 
-
-#start ttls
-#start_ttls = 'startttls\r\n'
-#clientSocket.send(start_ttls.encode()) 
-#recv_ttls = clientSocket.recv(1024).decode()
-#print(recv_ttls)
 
 # Send MAIL FROM command and print server response.  
 mail_from_command = 'MAIL FROM: <vgonzalez275@gmail.com> \r\n'
@@ -60,8 +53,10 @@ if recv4[:3] != '354':
 
 # Send message data. 
 clientSocket.send(msg+endmsg)
+
 # Message ends with a single period. 
 clientSocket.send(msg+endmsg)
+
 # Send QUIT command and get server response. 
 quit_cmd = 'QUIT\r\n'
 clientSocket.send(quit_cmd.encode())
@@ -72,5 +67,3 @@ if recv4[:3] != '221':
 
 clientSocket.close() 
 
-#CPE151 Notes
-#power,delay,dynamic circuit,layout, adders, different kinds of adders, using p,g,k, mirror architecture adders, comparators, circuit testing--> given a sequence, how do you find the fault, given hold time, etc. how to write sram, what are the combined requiremnts do design sram, dram. combinational circuit give the propagation and other one 
