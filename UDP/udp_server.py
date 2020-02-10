@@ -1,5 +1,4 @@
 #Veronica Gonzalez
-#CpE138 LAB2
 #UDP SERVER
 
 from socket import *
